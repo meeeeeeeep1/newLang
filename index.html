@@ -5,6 +5,17 @@
   </head>
   <body>
     <p>1234567890</p>
+    <p id="hash-with"></p><br>
+    <p id="hash-alone"></p><br>
+    <p>//hash\\</p>
+    <script>
+      var fragment = window.location.hash;  // This will store "#jbj" in the 'fragment' variable
+      document.getElementById(`hash-alone`).innerHTML = "not working";
+  document.getElementById("hash-with").innerHTML = "Now Working/no hash";
+        document.getElementById("hash-with").innerHTML = "//" + fragment + "\\";
+
+document.getElementById(`hash-alone`).innerHTML = fragment;
+    </script>
   </body>
  
 </html>
