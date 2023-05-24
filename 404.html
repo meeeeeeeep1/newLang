@@ -4,24 +4,45 @@
     <title>My App</title>
   </head>
   <body>
+    <p id="message"></p>
     <script>
 // Get the current URL
 var currentUrl = window.location.href;
 
-// Specify the base URL that should match
-var baseUrl = "https://meeeeeeeep1.github.io/newLang/";
+// Specify the expected pattern using a regular expression
+var expectedPattern = /^https:\/\/meeeeeeeep1\.github\.io\/newLang\/([^\/]+)$/;
 
-// Check if the current URL matches the base URL pattern
-if (currentUrl.startsWith(baseUrl)) {
+// Check if the current URL matches the expected pattern
+var match = currentUrl.match(expectedPattern);
+if (match) {
   // Extract the <string> part from the URL
-  var stringPart = currentUrl.substring(baseUrl.length);
+  var stringPart = match[1];
+  
+var url = "https://scratchdb.lefty.one/v3/user/info/" + stringPart;
 
-  // Output the extracted <string>
-  console.log(stringPart);
+fetch(url)
+  .then(function (response) {
+    return response.json();
+  })
+  .then(function (data) {
+    // Extract the country from the response data
+    var country = data.country;
+document.getElementById("message").innerHTML = country
+    // Output the country
+  })
+  .catch(function (error) {
+    console.log("Error: " + error);
+  document.getElementById("message").innerHTML = "Error:" + error
+
+  });
+
 } else {
   // Handle the case when the URL doesn't match the expected pattern
   console.log("URL doesn't match the expected pattern.");
+    document.getElementById("message").innerHTML = "URL doesn't match the expected pattern."
+
 }
+
     </script>
 
   </body>
