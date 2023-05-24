@@ -4,16 +4,24 @@
     <title>My App</title>
   </head>
   <body>
-    <p>1234567890</p>
-    <p id="hash-alone"></p><br>
+// Get the current URL
+var currentUrl = window.location.href;
 
-    <script>
-      var referrer = document.referrer;
-console.log(referrer);
+// Specify the base URL that should match
+var baseUrl = "https://meeeeeeeep1.github.io/newLang/";
 
-console.log(referrer)
-document.getElementById(`hash-alone`).innerHTML = referrer;
-    </script>
+// Check if the current URL matches the base URL pattern
+if (currentUrl.startsWith(baseUrl)) {
+  // Extract the <string> part from the URL
+  var stringPart = currentUrl.substring(baseUrl.length);
+
+  // Output the extracted <string>
+  console.log(stringPart);
+} else {
+  // Handle the case when the URL doesn't match the expected pattern
+  console.log("URL doesn't match the expected pattern.");
+}
+
   </body>
  
 </html>
