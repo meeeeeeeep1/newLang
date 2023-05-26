@@ -1,6 +1,9 @@
 async function fetchData() {
 
 // use https://corsproxy.io/ to convert url
+// always include '?' at beginning of second url
+// '/' = %2F
+// ':' = %3A
   const url = 'https://corsproxy.io/?https%3A%2F%2Fapi.scratch.mit.edu%2F';
   
   try {
