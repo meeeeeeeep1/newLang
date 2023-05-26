@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Scratch!!!!!</title>
+    <style>
+        body {
+            overflow: hidden;
+            background-color: #fcfcfc;
+            font-family: "Helvetica Neue", "Helvetica", Arial, sans-serif;
+            color: rgb(64, 70, 88);
+            margin: 0;
+            overflow-y: scroll;
+            padding: 0;
+
+        }
+
+        .user {
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%);
+            width: 600px;
+            border: 1px solid #d9d9d9;
+        }
+
+        .header {
+            border-bottom: 1px solid #d9d9d9;
+            height: auto;
+            width: 100%;
+
+        }
+
+        .banner {
+            background-color: #ffbf00;
+            height: 150px;
+
+
+        }
+
+        #pfp {
+            position: absolute;
+            margin-left: 40px;
+            border-radius: 200px;
+            height: 125px;
+            top: 80px;
+            outline: 5px solid rgb(64, 70, 88);
+        }
+
+        .header .basic h1 {
+            margin-top: 60px;
+            margin-left: 10px;
+            font-weight: bold;
+            font-size: 34px;
+        }
+
+        .header .basic p {
+            margin-left: 10px;
+            margin-top: -20px;
+            color: rgb(118, 124, 143);
+            font-size: 15px;
+        }
+
+        .stats .row {
+            font-style: italic;
+            color: #767c8f;
+            font-weight: bold;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            line-height: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+
+        }
+
+        .stats {
+            margin: 0px 20px;
+
+        }
+
+        .stat {
+            display: flex;
+            align-items: center;
+        }
+
+        .row img {
+            width: 15px;
+            color: #767c8f;
+            margin-right: 5px;
+        }
+
+        .row a {
+            color: #767c8f;
+            text-decoration: underline;
+
+        }
+
+        .row .id {
+            margin-right: 0px;
+        }
+
+        .row b {
+            font-weight: bolder;
+        }
+
+        .header .description {
+            margin: 0px 10px;
+        }
+
+        .header .description h3 {
+            font-weight: 700;
+            margin-bottom: -7px;
+        }
+
+        .header .description #aboutTitle {
+            margin-top: 20px;
+        }
+
+        .header .description .desc {
+            color: #767c8f;
+
+        }
+
+        .tab {
+            overflow: hidden;
+        }
+
+        /* Style the buttons that are used to open the tab content */
+        .tab button {
+            background-color: inherit;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            width: 100%;
+
+
+        }
+
+        /* Change background color of buttons on hover */
+        .tab button:hover {
+            background-color: #0000000c;
+        }
+
+        /* Create an active/current tablink class */
+        .tab button.active {
+            border-bottom: 5px solid #4d97ff;
+        }
+
+        /* Style the tab content */
+        .tabcontent {
+
+            display: none;
+            padding: 6px 12px;
+            border: 1px solid #ccc;
+            border-top: none;
+        }
+
+        .tab {
+            display: flex;
+            align-content: center;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .project {
+            height: auto;
+            padding-top: 2px;
+            padding-left: 8px;
+            padding-right: 8px;
+
+            color: rgb(87, 94, 117);
+            margin: 7px;
+            border-radius: 4px;
+            box-shadow: 0 0 0 1px rgba(0, 0, 0, .1);
+            background-color: #fff;
+            padding-bottom: 4px;
+            width: 260px;
+            padding-bottom: 10px;
+        }
+
+        .project .project_info {
+            padding-left: 10px;
+        }
+
+        .project h3 {
+            font-size: 1.6rem;
+            font-weight: normal;
+            margin-top: 0px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            margin-bottom: 0px;
+
+
+        }
+
+        .project a {
+            color: rgb(64, 70, 88);
+            text-decoration: none;
+        }
+
+        .project img {
+            margin: 5px auto;
+            display: block;
+            border-radius: 4px;
+            color: #ff0000
+        }
+
+        .projectsGrid {
+            display: grid;
+            grid-gap: 5px;
+            grid-template-columns: repeat(2, auto);
+            grid-template-rows: repeat(20, 1fr);
+        }
+
+        #Activity {
+            background: #ffffff !important;
+
+        }
+
+        .forumPostGrid {
+            display: grid;
+            grid-gap: 10px;
+            grid-template-columns: repeat(1, 1fr);
+            grid-template-rows: repeat(20, auto);
+        }
+
+        .userActivity {
+            padding-top: 10px;
+
+            width: 100%;
+            border-bottom: 1px solid #d9d9d9;
+            height: 50px;
+            display: inline-block;
+        }
+
+        .userActivity #activityText {
+            font-size: 20px;
+        }
+
+        .userActivity #activityTime {
+            font-style: italic;
+            color: #767c8f;
+        }
+
+        .forumPost {
+            background: #ffffff;
+
+            border: 1px solid #d9d9d9;
+            padding: 10px;
+            border-radius: 10px;
+            width: 1fr;
+        }
+
+        .forumPost .postHead .title {
+            margin-bottom: -13px;
+        }
+
+        .forumPost .postHead .title {
+            font-weight: lighter;
+        }
+
+        .forumPost .category {
+            margin-bottom: 3px;
+        }
+
+        .forumPost .postContent {
+            margin-left: 10px;
+            color: rgb(86, 89, 105);
+            margin-bottom: 10px;
+        }
+
+        .forumPost .dates {
+            color: rgb(118, 124, 143);
+            font-size: 12px
+        }
+
+        .forumPost .messageType {
+            color: rgb(118, 124, 143);
+            font-size: 14px;
+            position: absolute;
+            right: 30px;
+            margin-top: 13px;
+        }
+
+        .forumPost .postHead {
+            display: flex;
+            align-items: last baseline;
+            margin-bottom: 20px;
+        }
+
+        .forumPost .postHead img {
+            height: 40px;
+            margin-right: 10px;
+            border-radius: 10px;
+        }
+
+        .tabcontent {
+            background: #e9f1fc;
+
+        }
+
+        .menuLeft {
+            position: absolute;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="menuLeft">
+        <input type="hi">
+    </div>
+    <div class="user">
+        <div class="header">
+            <div class="banner" id="banner"></div>
+            <img alt="" src="https://uploads.scratch.mit.edu/get_image/user/34766559_90x90.png" id="pfp">
+            <div class="basic">
+                <h1 id="username">Scratch_RPG</h1>
+                <p><i id="status">Scratcher</i></p>
+            </div>
+            <div class="stats">
+                <div class="row">
+                    <div class="stat">
+                        <img alt="" class="id"
+                            src="https://scratch.mit.edu/svgs/conference/index/hashtag-icon-solid.svg">
+                        <span id="id">97522064</span>
+                    </div>
+                    <div class="stat">
+                        <img alt="" src="https://scratch.mit.edu/svgs/conference/index/calendar-icon-solid.svg">
+                        <span id="joined">Joined 11 months ago</span>
+                    </div>
+                    <div class="stat">
+                        <img alt="" src="https://scratch.mit.edu/svgs/conference/index/map-icon.svg">
+                        <span id="location">Germany</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="stat" id="school_stat">
+                        <img alt="" src="https://scratch.mit.edu/svgs/conference/index/map-icon.svg">
+                        <span id="school">School2</span>
+                    </div>
+                    <div class="stat">
+                        <span><b id="following">19000</b> <a href="" id="following_link"> Following</a></span>
+                    </div>
+                    <div class="stat">
+                        <span ><b id="followers">19000</b> <a href="" id="followers_link">Followers</a></span>
+                    </div>
+                </div>
+            </div>
+            <div class="description">
+                <h3 id="aboutTitle">About Me:</h3>
+                <p id="about" class="desc">I am a retired mathematics, science, and programming teacher. I enjoy
+                    programming, fractals, and the mathematics of chaos theory. I am 84 years old and look forward every
+                    day to learning something new</p>
+                <h3>What I'm working on:</h3>
+                <p id="work" class="desc">I am currently working on the Harriss Spiral.</p>
+            </div>
+
+            <div class="tabs">
+                <div class="tab">
+                    <button class="tablinks" onclick="openTab(event, 'Projects')">Projects</button>
+                    <button class="tablinks" onclick="openTab(event, 'Activity')">Activity</button>
+                    <button class="tablinks" onclick="openTab(event, 'Forum')">Forum</button>
+
+                </div>
+            </div>
+
+            <div id="Forum" class="tabcontent">
+                <div class="forumPostGrid" id="postGrid">
+
+                </div>
+            </div>
+            <div id="Projects" class="tabcontent">
+                <div id="projectsGrid" class="projectsGrid">
+
+                </div>
+
+            </div>
+
+            <div id="Activity" class="tabcontent">
+                <div class="userActivity">
+                    <span id="activityText">fictioneer favorited Planet Maker - Unfinished</span><br>
+                    <span id="activityTime">4 days, 7 hours ago</span>
+                </div>
+            </div>
+
+            <div id="Tokyo" class="tabcontent">
+                <h3>Tokyo</h3>
+                <p id="output">Tokyo is the capital of Japan.</p>
+            </div>
+        </div>
+        <div id="div">
+
+        </div>
+    </div>
+
+    <script>
+        let username = "-cri-";
+        let userID = "";
+        let pfp = document.getElementById("pfp");
+        let banner = document.getElementById("banner");
+
+        pfp.style.top = banner.offsetHeight / 5 + "px";
+
+        function openTab(evt, cityName) {
+            var i, tabcontent, tablinks;
+
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(cityName).style.borderBottom = "5px solid #4d97ff;";
+
+            document.getElementById(cityName).style.display = "block";
+            evt.currentTarget.className += " active";
+
+        }
+
+
+        function addProject(id, name) {
+            const template = document.createElement('div');
+            template.innerHTML = `
+      <div class="project">
+        <a href="https://scratch.mit.edu/projects/${id}/">
+          <img id="thumb" src="https://uploads.scratch.mit.edu/get_image/project/${id}_282x210.png">
+        </a>
+        <div class="project_info">
+          <h3>
+            <a href="https://scratch.mit.edu/projects/${id}/">${name}</a>
+          </h3>
+          <span id="shared_on">Shared on</span>
+        </div>
+      </div>`;
+            let grid = document.getElementById("projectsGrid");
+
+            grid.appendChild(template);
+        }
+        addProject("823872487", "Cloud Platformer Multiplayer Fun v1.42 #3");
+
+
+
+        function addActivity(text, date) {
+
+            var template = document.createElement('div');
+            template.classList.add('userActivity');
+            template.innerHTML = `
+        <span id="activityText">${text}</span><br>
+        <span id="activityTime">${date}</span>`;
+            var existingActivity = document.querySelector('#Activity .userActivity');
+            existingActivity.parentNode.insertBefore(template, existingActivity.nextSibling);
+        }
+        for (let index = 0; index < 4; index++) {
+            addActivity("fictioneer favorited Another Project", "1 hour ago");
+            addProject("843302185", "Cloud Platformer Multiplayer Fun v1.42 #3");
+
+        }
+        function addPost(remix, title, category, content, edited, posted) {
+
+            const template = document.createElement('div');
+            if (remix) {
+                template.innerHTML = `<div class="forumPost">
+        <div class="messageType">
+                        <img src="https://scratch.mit.edu/svgs/project/comment-reply.svg">
+                    </div>
+                    <div class="postHead">
+                        <img src="https://uploads.scratch.mit.edu/get_image/user/34766559_90x90.png">
+                        <div>
+                    <div class="title">
+                        <h2 class="replyto"> Reply to <a>forum post</a></h2>
+                    </div>
+            <div class="category">
+                <svg xmlns="http://www.w3.org/2000/svg" width="9" height="10">
+                    <rect width="9" height="9" rx="2" ry="2" style="fill: #ED207B;"/>
+                </svg>
+                <span>${category}</span>
+            </div>
+            </div>
+        </div>
+        <div class="postContent"><span>${content}</span></div>
+        <div class="dates">posted on ${posted} | last edited on ${edited}</div>
+    </div>`;
+            } else {
+                template.innerHTML = `<div class="forumPost">
+        <div class="messageType">
+            <img src="https://scratch.mit.edu/svgs/conference/index/language-icon-solid.svg">
+        </div>
+        <div class="postHead">
+            <img src="https://uploads.scratch.mit.edu/get_image/user/34766559_90x90.png">
+            <div>
+            <div class="title">
+                <h2>${title}</h2>
+            </div>
+
+            <div class="category">
+                <svg xmlns="http://www.w3.org/2000/svg" width="9" height="10">
+                    <rect width="9" height="9" rx="2" ry="2" style="fill: #ED207B;"/>
+                </svg>
+                <span>${category}</span>
+            </div>
+            </div>
+        </div>
+        <div class="postContent"><span>${content}</span></div>
+        <div class="dates">posted on ${posted} | last edited on ${edited}</div>
+    </div>`;
+            }
+            let grid = document.getElementById("postGrid");
+            grid.appendChild(template);
+        }
+
+        addPost(true, "Platformer - Wall Collision Help", "ADVANCED", "In the updated code, the rx and ry attributes of the element are set to 2. This will create a border radius of 2 pixels on the corners of the square. Feel free to adjust the values of rx and ry to your desired border radius.", "10", "20");
+        addPost(false, "Platformer - Wall Collision Help", "ADVANCED", "In the updated code, the rx and ry attributes of the element are set to 2. This will create a border radius of 2 pixels on the corners of the square. Feel free to adjust the values of rx and ry to your desired border radius.", "10", "20");
+
+        openTab(event, 'Forum');
+        const userData = {
+            "username": "",
+            "status": "",
+            "id": "",
+            "country": "",
+            "dates": {
+                "joined": ""
+            },
+            "stats": {
+                "followers": "",
+                "following": "",
+                "totalFavorites": "",
+                "totalLoves": "",
+                "messagecount": "",
+                "totalProjects": "",
+                "totalStudiosCurating": ""
+            },
+            "bios": {
+                "bio1": "",
+                "bio2": ""
+            }
+        };
+
+        async function fetchData(url) {
+            try {
+                const response = await fetch('https://corsproxy.io/?' + encodeURIComponent(url));
+
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw new Error('Request failed with status:', response.status);
+                }
+            } catch (error) {
+                console.error('An error occurred:', error);
+                return null;
+            }
+        }
+
+
+        async function getJSON(url) {
+            try {
+                const data = await fetchData(url);
+                return data;
+            } catch (error) {
+                return error;
+            }
+        }
+
+        function setprofiledata1(username) {
+            getJSON(`https://api.scratch.mit.edu/users/${username}/`)
+                .then(data => {
+                    userData.username = data.username;
+                    if (data.scratchteam) {
+                        userData.status = "Scratchteam";
+                    } else {
+                        userData.status = "Scratcher";
+                    }
+                    userData.id = data.id;
+                    userData.country = data.profile.country;
+                    userData.bios.bio1 = data.profile.bio;
+                    userData.bios.bio2 = data.profile.status;
+                    userData.dates.joined = data.history.joined;
+
+                })
+                .catch(error => {
+                    console.error('An error occurred:', error);
+                });
+        }
+
+        function setMessageCount(username) {
+            getJSON(`https://api.scratch.mit.edu/users/${username}/messages/count`)
+                .then(data => {
+                    userData.stats.messagecount = data.count;
+
+                })
+                .catch(error => {
+                    console.error('An error occurred:', error);
+                });
+        }
+
+        function setProjectCount(username) {
+            getJSON(`https://api.scratch.mit.edu/users/${username}/projects`)
+                .then(data => {
+                    userData.stats.totalProjects = data.length;
+
+                })
+                .catch(error => {
+                    console.error('An error occurred:', error);
+                });
+        }
+
+        function setFollowersAndFollowing(username) {
+            // following
+            getJSON(`https://api.scratch.mit.edu/users/${username}/following`)
+                .then(data => {
+                    userData.stats.following = data.length;
+
+                })
+                .catch(error => {
+                    console.error('An error occurred:', error);
+                });
+            // followers
+            getJSON(`https://api.scratch.mit.edu/users/${username}/followers`)
+                .then(data => {
+                    userData.stats.followers = data.length;
+
+                })
+                .catch(error => {
+                    console.error('An error occurred:', error);
+                });
+        }
+
+        function setLovesAndFaves(username) {
+            // following
+            getJSON(`https://api.scratch.mit.edu/users/${username}/favorites`)
+                .then(data => {
+                    userData.stats.totalFavorites = data.length;
+
+                })
+                .catch(error => {
+                    console.error('An error occurred:', error);
+                });
+        }
+
+        function setStudiosCurating(username) {
+            // following
+            getJSON(`https://api.scratch.mit.edu/users/${username}/studios/curate`)
+                .then(data => {
+                    userData.stats.totalStudiosCurating = data.length;
+
+                })
+                .catch(error => {
+                    console.error('An error occurred:', error);
+                });
+        }
+// Call all the asynchronous functions
+const promises = [
+  setprofiledata1(username),
+  setMessageCount(username),
+  setProjectCount(username),
+  setFollowersAndFollowing(username),
+  setLovesAndFaves(username),
+  setStudiosCurating(username)
+];
+
+// Wait for all promises to resolve
+Promise.all(promises)
+  .then(() => {
+    window.onload = function() {
+    // Code to run after all functions have finished
+    document.getElementById('username').textContent = userData.username;
+    // Additional code...
+    document.getElementById('status').textContent = userData.status;
+    document.getElementById('id').textContent = userData.id;
+    document.getElementById('joined').textContent = userData.dates.joined;
+    document.getElementById('location').textContent = userData.country;
+    document.getElementById('about').textContent = userData.bios.bio1;
+    document.getElementById('work').textContent = userData.bios.bio2;
+    document.getElementById('following').textContent = userData.stats.followers;
+    document.getElementById('followers').textContent = userData.stats.following;
+    document.getElementById('pfp').src = `https://uploads.scratch.mit.edu/get_image/user/${userData.id}_90x90.png`;
+
+
+}
+  })
+  .catch(error => {
+    // Handle any errors that occurred during the execution of the functions
+    console.error('An error occurred:', error);
+  });
+
+    </script>
+</body>
+
+</html>
