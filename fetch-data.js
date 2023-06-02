@@ -1,4 +1,4 @@
-async function fetchData(url) {
+export async function fetchData(url) {
             try {
                 const response = await fetch('https://corsproxy.io/?' + encodeURIComponent(url));
 
@@ -14,7 +14,7 @@ async function fetchData(url) {
         }
 
 
-        async function getJSONs(url) {
+        export async function getJSONs(url) {
             try {
                 const data = await fetchData(url);
                 return data;
@@ -22,6 +22,6 @@ async function fetchData(url) {
                 return error;
             }
         }
-function log(text) {
+export function log(text) {
             return text
 }
