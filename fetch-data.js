@@ -22,3 +22,6 @@ async function fetchData(url) {
                 return error;
             }
         }
+function log(text) {
+            return text
+}
