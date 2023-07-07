@@ -1,4 +1,4 @@
-    function parseCSV(str) {
+    export function parseCSV(str) {
       const arr = [];
       let quote = false;
       for (let row = 0, col = 0, c = 0; c < str.length; c++) {
